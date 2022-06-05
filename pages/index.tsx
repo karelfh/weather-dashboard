@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSideProps } from 'next';
 import type { Data } from '../types/typeWeatherApi';
 
 import { useState } from 'react';
@@ -85,6 +85,18 @@ const Home: NextPage<Data> = () => {
 			/>
 		</div>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+	const response = await axios.get(
+		`http://localhost:3000/api/currentWeather?lat=-73.935242&lon=40.73061&units=metric&lang=en&appid=${process.env.OPEN_WEATHER_API}`
+	);
+
+	return {
+		props: {
+			initialData: response.data,
+		},
+	};
 };
 
 export default Home;
