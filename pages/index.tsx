@@ -1,12 +1,25 @@
 import type { NextPage } from 'next';
+import type { Data } from '../types/typeWeatherApi';
+
 import { useState } from 'react';
 import axios from 'axios';
 
-const Home: NextPage<{ data: Array<string> }> = () => {
+import WeatherCard from '../components/weather-card/weather-card';
+
+const Home: NextPage<Data> = () => {
 	const [location, setLocation] = useState({
 		lon: -73.935242,
 		lat: 40.73061,
 	});
+	const [weatherData, setWeatherData] = useState<Data>({
+		lat: location.lat,
+		lon: location.lon,
+		timezone: '',
+		timezone_offset: 0,
+	});
+	const [units, setUnits] = useState('metric');
+	const [exclude, setExclude] = useState('');
+	const [lang, setLang] = useState('en');
 
 	const getGeolocationData = () => {
 		navigator.geolocation.getCurrentPosition(
@@ -34,8 +47,10 @@ const Home: NextPage<{ data: Array<string> }> = () => {
 	// TODO: Do something useful not console.log
 	const getCurrentWeather = async () => {
 		await axios
-			.get(`/api/currentWeather?lon=${location.lon}&lat=${location.lat}`)
-			.then((response) => console.log(response))
+			.get(
+				`/api/currentWeather?lon=${location.lon}&lat=${location.lat}&exclude=${exclude}&units=${units}&lang=${lang}`
+			)
+			.then((response) => setWeatherData(response.data))
 			// TODO: Infrom user of an error on screen not in console
 			.catch((error) => console.error(error));
 	};
@@ -60,6 +75,14 @@ const Home: NextPage<{ data: Array<string> }> = () => {
 			>
 				Get Current Weather
 			</button>
+
+			<WeatherCard
+				lat={weatherData.lat}
+				lon={weatherData.lon}
+				timezone={weatherData.timezone}
+				timezone_offset={weatherData.timezone_offset}
+				current={weatherData.current}
+			/>
 		</div>
 	);
 };
