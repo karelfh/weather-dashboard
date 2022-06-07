@@ -1,4 +1,5 @@
 import type { NextPage, GetServerSideProps } from 'next';
+import type { AxiosResponse } from 'axios';
 import type { Data } from '../types/typeWeatherApi';
 
 import { useState } from 'react';
@@ -6,16 +7,16 @@ import axios from 'axios';
 
 import WeatherCard from '../components/weather-card/weather-card';
 
-const Home: NextPage<Data> = () => {
+const Home: NextPage<Data> = (props: Data) => {
 	const [location, setLocation] = useState({
 		lon: -73.935242,
 		lat: 40.73061,
 	});
 	const [weatherData, setWeatherData] = useState<Data>({
-		lat: location.lat,
-		lon: location.lon,
-		timezone: '',
-		timezone_offset: 0,
+		lat: props.lat,
+		lon: props.lon,
+		timezone: props.timezone,
+		timezone_offset: props.timezone_offset,
 	});
 	const [units, setUnits] = useState('metric');
 	const [exclude, setExclude] = useState('');
@@ -44,7 +45,6 @@ const Home: NextPage<Data> = () => {
 		);
 	};
 
-	// TODO: Do something useful not console.log
 	const getCurrentWeather = async () => {
 		await axios
 			.get(
@@ -77,18 +77,32 @@ const Home: NextPage<Data> = () => {
 			</button>
 
 			<WeatherCard
-				lat={weatherData.lat}
-				lon={weatherData.lon}
-				timezone={weatherData.timezone}
-				timezone_offset={weatherData.timezone_offset}
+				title={'Wind'}
+				desc={'Today wind speed'}
+				current={weatherData.current}
+			/>
+			<WeatherCard
+				title={'Pressure'}
+				desc={'Today pressure'}
+				current={weatherData.current}
+			/>
+			<WeatherCard
+				title={'Humidity'}
+				desc={'Today humidity'}
+				current={weatherData.current}
+			/>
+			<WeatherCard
+				title={'UV Index'}
+				desc={'Today UV Index'}
 				current={weatherData.current}
 			/>
 		</div>
 	);
 };
 
+// TODO: FIX: getServerSideProps returns undefined in page props
 export const getServerSideProps: GetServerSideProps = async () => {
-	const response = await axios.get(
+	const response: AxiosResponse<Data> = await axios.get(
 		`http://localhost:3000/api/currentWeather?lat=-73.935242&lon=40.73061&units=metric&lang=en&appid=${process.env.OPEN_WEATHER_API}`
 	);
 
