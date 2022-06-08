@@ -6,6 +6,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 import WeatherCard from '../components/weather-card/weather-card';
+import WeatherDisplay from '../components/weather-display/weather-display';
 
 const Home: NextPage<Data> = (props: Data) => {
 	const [location, setLocation] = useState({
@@ -75,6 +76,8 @@ const Home: NextPage<Data> = (props: Data) => {
 			>
 				Get Current Weather
 			</button>
+
+			<WeatherDisplay current={weatherData.current} daily={weatherData.daily} />
 
 			<WeatherCard
 				title={'Wind'}
