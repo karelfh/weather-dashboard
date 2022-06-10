@@ -8,17 +8,13 @@ import axios from 'axios';
 import WeatherCard from '../components/weather-card/weather-card';
 import WeatherDisplay from '../components/weather-display/weather-display';
 
-const Home: NextPage<Data> = (props: Data) => {
+// TODO: Replace any data type for initialData
+const Home: NextPage<Data> = ({ initialData }: any) => {
 	const [location, setLocation] = useState({
-		lon: -73.935242,
-		lat: 40.73061,
+		lon: -74.005974,
+		lat: 40.712776,
 	});
-	const [weatherData, setWeatherData] = useState<Data>({
-		lat: props.lat,
-		lon: props.lon,
-		timezone: props.timezone,
-		timezone_offset: props.timezone_offset,
-	});
+	const [weatherData, setWeatherData] = useState(initialData);
 	const [units, setUnits] = useState('metric');
 	const [exclude, setExclude] = useState('');
 	const [lang, setLang] = useState('en');
@@ -103,10 +99,9 @@ const Home: NextPage<Data> = (props: Data) => {
 	);
 };
 
-// TODO: FIX: getServerSideProps returns undefined in page props
 export const getServerSideProps: GetServerSideProps = async () => {
 	const response: AxiosResponse<Data> = await axios.get(
-		`http://localhost:3000/api/currentWeather?lat=-73.935242&lon=40.73061&units=metric&lang=en&appid=${process.env.OPEN_WEATHER_API}`
+		`http://localhost:3000/api/currentWeather?lat=40.712776&lon=-74.005974&units=metric&lang=en&appid=${process.env.OPEN_WEATHER_API}`
 	);
 
 	return {
