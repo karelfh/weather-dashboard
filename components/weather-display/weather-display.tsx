@@ -1,4 +1,5 @@
 import { Current, Daily } from '../../types/typeWeatherApi';
+import GraphTemp from '../graph-temp/graph-temp';
 
 const WeatherDisplay = ({
 	current,
@@ -47,9 +48,7 @@ const WeatherDisplay = ({
 			<div>
 				{/* TODO: Create separete component */}
 				<div>
-					<h2>Temperature</h2>
-					{/* TODO: Create line graph for temps */}
-					<div>graph</div>
+					{daily != null && <GraphTemp temp={daily[0].temp} />}
 					<div>
 						<div>
 							<p>Morning</p>
