@@ -30,21 +30,21 @@ const WeatherDisplay = ({
 					</div>
 				</div>
 				<div>
-					<h2>{current?.temp} C</h2>
+					<h2>{current != null && Math.round(current.temp)} C</h2>
 					<p>Mostly clear</p>
 				</div>
 				<div>
 					<div>
 						<i>Icon</i>
-						<p>{current?.pressure} hPa</p>
+						<p>{current != null && Math.round(current.pressure)} hPa</p>
 					</div>
 					<div>
 						<i>Icon</i>
-						<p>{current?.humidity} %</p>
+						<p>{current != null && Math.round(current.humidity)} %</p>
 					</div>
 					<div>
 						<i>Icon</i>
-						<p>{current?.wind_speed} km/h</p>
+						<p>{current != null && Math.round(current.wind_speed)} km/h</p>
 					</div>
 				</div>
 			</div>
@@ -55,19 +55,19 @@ const WeatherDisplay = ({
 					<div>
 						<div>
 							<p>Morning</p>
-							<p>{daily != null && daily[0].temp.morn}</p>
+							<p>{daily != null && Math.round(daily[0].temp.morn)}</p>
 						</div>
 						<div>
 							<p>Afternoon</p>
-							<p>{daily != null && daily[0].temp.day}</p>
+							<p>{daily != null && Math.round(daily[0].temp.day)}</p>
 						</div>
 						<div>
 							<p>Evening</p>
-							<p>{daily != null && daily[0].temp.eve}</p>
+							<p>{daily != null && Math.round(daily[0].temp.eve)}</p>
 						</div>
 						<div>
 							<p>Night</p>
-							<p>{daily != null && daily[0].temp.night}</p>
+							<p>{daily != null && Math.round(daily[0].temp.night)}</p>
 						</div>
 					</div>
 				</div>

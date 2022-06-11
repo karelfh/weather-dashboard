@@ -29,10 +29,10 @@ const GraphTemp = ({ temp }: Daily) => {
 		<Line
 			data={{
 				labels: [
-					`Morning ${temperature.morn}`,
-					`Afternoon ${temperature.day}`,
-					`Evening ${temperature.eve}`,
-					`Night ${temperature.night}`,
+					`Morning ${Math.round(temperature.morn)} C`,
+					`Afternoon ${Math.round(temperature.day)} C`,
+					`Evening ${Math.round(temperature.eve)} C`,
+					`Night ${Math.round(temperature.night)} C`,
 				],
 				datasets: [
 					{
