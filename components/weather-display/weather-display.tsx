@@ -8,9 +8,12 @@ const WeatherDisplay = ({
 	current?: Current;
 	daily?: Daily[];
 }) => {
-	const hour = current?.dt != null && new Date(current?.dt * 1000).getHours();
+	const hour =
+		current?.dt != null &&
+		('0' + new Date(current?.dt * 1000).getHours()).slice(-2);
 	const minutes =
-		current?.dt != null && new Date(current?.dt * 1000).getMinutes();
+		current?.dt != null &&
+		('0' + new Date(current?.dt * 1000).getMinutes()).slice(-2);
 	const currentTime = current?.dt != null && `${hour}:${minutes}`;
 
 	return (
