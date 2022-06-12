@@ -9,18 +9,12 @@ import WeatherCard from '../components/weather-card/weather-card';
 import WeatherDisplay from '../components/weather-display/weather-display';
 
 // TODO: Replace any data type for initialData
-const Home: NextPage = ({ initialData }: any) => {
-	const [location, setLocation] = useState<Location>({
-		name: '',
-		local_names: {},
-		lat: 40.712776,
-		lon: -74.005974,
-		country: '',
-		state: '',
-	});
-	const [weatherData, setWeatherData] = useState(initialData);
+const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
+	const [location, setLocation] = useState<Location>(initialLocation);
+	const [weatherData, setWeatherData] = useState<Data>(initialWeather);
+	// TODO: Ask user what units to display
 	const [units, setUnits] = useState('metric');
-	const [exclude, setExclude] = useState('');
+	// TODO: Ask user what language to display
 	const [lang, setLang] = useState('en');
 
 	const getGeolocationData = () => {
@@ -48,7 +42,7 @@ const Home: NextPage = ({ initialData }: any) => {
 	const getCurrentWeather = async () => {
 		await axios
 			.get(
-				`/api/currentWeather?lon=${location.lon}&lat=${location.lat}&exclude=${exclude}&units=${units}&lang=${lang}`
+				`/api/currentWeather?lon=${location.lon}&lat=${location.lat}&units=${units}&lang=${lang}`
 			)
 			.then((response) => setWeatherData(response.data))
 			// TODO: Inform user of an error on screen not in console
@@ -107,13 +101,23 @@ const Home: NextPage = ({ initialData }: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-	const response: AxiosResponse<Data> = await axios.get(
-		`http://localhost:3000/api/currentWeather?lat=40.712776&lon=-74.005974&units=metric&lang=en&appid=${process.env.OPEN_WEATHER_API}`
+	const defaultLocation = {
+		lat: '40.712776',
+		lon: '-74.005974',
+	};
+
+	const weather: AxiosResponse = await axios.get(
+		`http://localhost:3000/api/currentWeather?lat=${defaultLocation.lat}&lon=${defaultLocation.lon}&units=metric&lang=en&appid=${process.env.OPEN_WEATHER_API}`
+	);
+
+	const location: AxiosResponse = await axios.get(
+		`http://localhost:3000/api/currentLocation?lat=${defaultLocation.lat}&lon=${defaultLocation.lon}&limit=1&appid=${process.env.OPEN_WEATHER_API}`
 	);
 
 	return {
 		props: {
-			initialData: response.data,
+			initialWeather: weather.data,
+			initialLocation: location.data[0],
 		},
 	};
 };
