@@ -1,6 +1,6 @@
 import type { NextPage, GetServerSideProps } from 'next';
 import type { AxiosResponse } from 'axios';
-import type { Data } from '../types/typeWeatherApi';
+import type { Data, Location } from '../types/typeWeatherApi';
 
 import { useState } from 'react';
 import axios from 'axios';
@@ -9,10 +9,14 @@ import WeatherCard from '../components/weather-card/weather-card';
 import WeatherDisplay from '../components/weather-display/weather-display';
 
 // TODO: Replace any data type for initialData
-const Home: NextPage<Data> = ({ initialData }: any) => {
-	const [location, setLocation] = useState({
-		lon: -74.005974,
+const Home: NextPage = ({ initialData }: any) => {
+	const [location, setLocation] = useState<Location>({
+		name: '',
+		local_names: {},
 		lat: 40.712776,
+		lon: -74.005974,
+		country: '',
+		state: '',
 	});
 	const [weatherData, setWeatherData] = useState(initialData);
 	const [units, setUnits] = useState('metric');
@@ -22,12 +26,11 @@ const Home: NextPage<Data> = ({ initialData }: any) => {
 	const getGeolocationData = () => {
 		navigator.geolocation.getCurrentPosition(
 			(position) => {
-				let location = position.coords;
-
-				setLocation({
-					lon: location.longitude,
-					lat: location.latitude,
-				});
+				axios
+					.get(
+						`/api/currentLocation?lon=${position.coords.longitude}&lat=${position.coords.latitude}`
+					)
+					.then((response) => setLocation(response.data[0]));
 			},
 			(error) => {
 				// TODO: Handle user declining geolocation prompt
@@ -48,7 +51,7 @@ const Home: NextPage<Data> = ({ initialData }: any) => {
 				`/api/currentWeather?lon=${location.lon}&lat=${location.lat}&exclude=${exclude}&units=${units}&lang=${lang}`
 			)
 			.then((response) => setWeatherData(response.data))
-			// TODO: Infrom user of an error on screen not in console
+			// TODO: Inform user of an error on screen not in console
 			.catch((error) => console.error(error));
 	};
 
@@ -73,7 +76,11 @@ const Home: NextPage<Data> = ({ initialData }: any) => {
 				Get Current Weather
 			</button>
 
-			<WeatherDisplay current={weatherData.current} daily={weatherData.daily} />
+			<WeatherDisplay
+				location={location}
+				current={weatherData.current}
+				daily={weatherData.daily}
+			/>
 
 			<WeatherCard
 				title={'Wind'}

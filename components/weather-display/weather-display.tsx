@@ -1,10 +1,12 @@
-import { Current, Daily } from '../../types/typeWeatherApi';
+import { Current, Daily, Location } from '../../types/typeWeatherApi';
 import GraphTemp from '../graph-temp/graph-temp';
 
 const WeatherDisplay = ({
+	location,
 	current,
 	daily,
 }: {
+	location: Location;
 	current?: Current;
 	daily?: Daily[];
 }) => {
@@ -22,8 +24,9 @@ const WeatherDisplay = ({
 				<div>
 					<div>
 						<i>Icon</i>
-						{/* TODO: API doesnt return location name */}
-						<p>Location-name</p>
+						<p>
+							{location.name}, {location.country}
+						</p>
 					</div>
 					<div>
 						<p>Today at {currentTime}</p>
