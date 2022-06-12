@@ -1,5 +1,7 @@
 import { Current } from '../../types/typeWeatherApi';
 
+import style from './weather-card.module.css';
+
 const WeatherCard = ({
 	title,
 	desc,
@@ -9,7 +11,7 @@ const WeatherCard = ({
 	desc: string;
 	current?: Current;
 }) => {
-	let value;
+	let value: number | undefined;
 	let units: string = '';
 
 	switch (title) {
@@ -39,7 +41,19 @@ const WeatherCard = ({
 				</p>
 			</article>
 			<div>
-				<p>weather-dial-component</p>
+				{/* TODO: Create separate components for each title */}
+				{title === 'Wind' && (
+					<div
+						className={style['outer']}
+						style={{ transform: `rotate(${current?.wind_deg}deg)` }}
+					>
+						<div
+							className={style['needle']}
+							style={{ transform: `rotate(${current?.wind_deg}deg)` }}
+						></div>
+					</div>
+				)}
+				{current?.wind_deg}°
 			</div>
 		</div>
 	);
