@@ -43,10 +43,7 @@ const WeatherCard = ({
 			<div>
 				{/* TODO: Create separate components for each title */}
 				{title === 'Wind' && (
-					<div
-						className={style['outer']}
-						style={{ transform: `rotate(${current?.wind_deg}deg)` }}
-					>
+					<div className={style['outer']}>
 						<div
 							className={style['needle']}
 							style={{ transform: `rotate(${current?.wind_deg}deg)` }}
