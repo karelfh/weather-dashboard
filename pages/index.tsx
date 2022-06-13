@@ -1,10 +1,11 @@
+import axios from 'axios';
+import { useState } from 'react';
+
 import type { NextPage, GetServerSideProps } from 'next';
-import type { AxiosResponse } from 'axios';
 import type { Data, Location } from '../types/typeWeatherApi';
 
-import { useState } from 'react';
-import axios from 'axios';
-
+import { getCurrentWeather } from './api/currentWeather';
+import { getCurrentLocation } from './api/currentLocation';
 import WeatherCard from '../components/weather-card/weather-card';
 import WeatherDisplay from '../components/weather-display/weather-display';
 
@@ -101,23 +102,26 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-	const defaultLocation = {
-		lat: '40.712776',
-		lon: '-74.005974',
+	const defaultWeatherQuery = {
+		lat: '51.5072',
+		lon: '0.1276',
+		exclude: '',
+		units: 'metric',
+		lang: 'en',
 	};
 
-	const weather: AxiosResponse = await axios.get(
-		`http://localhost:3000/api/currentWeather?lat=${defaultLocation.lat}&lon=${defaultLocation.lon}&units=metric&lang=en&appid=${process.env.OPEN_WEATHER_API}`
-	);
+	const defaultLocationQuery = {
+		lat: defaultWeatherQuery.lat,
+		lon: defaultWeatherQuery.lon,
+	};
 
-	const location: AxiosResponse = await axios.get(
-		`http://localhost:3000/api/currentLocation?lat=${defaultLocation.lat}&lon=${defaultLocation.lon}&limit=1&appid=${process.env.OPEN_WEATHER_API}`
-	);
+	const defaultWeather = await getCurrentWeather(defaultWeatherQuery);
+	const defaultLocation = await getCurrentLocation(defaultLocationQuery);
 
 	return {
 		props: {
-			initialWeather: weather.data,
-			initialLocation: location.data[0],
+			initialWeather: defaultWeather,
+			initialLocation: defaultLocation[0],
 		},
 	};
 };
