@@ -1,4 +1,4 @@
-import { Current } from '../../types/typeWeatherApi';
+import type { Current } from '../../types/typeWeatherApi';
 
 import style from './weather-card.module.css';
 

@@ -1,4 +1,5 @@
-import { Current, Daily, Location } from '../../types/typeWeatherApi';
+import type { Current, Daily, Location } from '../../types/typeWeatherApi';
+
 import GraphTemp from '../graph-temp/graph-temp';
 
 const WeatherDisplay = ({

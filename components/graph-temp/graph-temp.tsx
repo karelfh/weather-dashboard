@@ -1,4 +1,3 @@
-import type { Daily } from '../../types/typeWeatherApi';
 import { useEffect, useState } from 'react';
 import {
 	Chart as ChartJS,
@@ -8,6 +7,8 @@ import {
 	LineElement,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+
+import type { Daily } from '../../types/typeWeatherApi';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
