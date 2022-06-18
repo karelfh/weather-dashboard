@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import Head from 'next/head';
 
 import type { NextPage, GetServerSideProps } from 'next';
 import type { Data, Location } from '../types/typeWeatherApi';
@@ -51,53 +52,60 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center h-screen">
-			<h1 className="text-4xl font-bold">Weather Dashboard</h1>
+		<>
+			<Head>
+				<title>
+					Weather for {location.name}, {location.country}
+				</title>
+			</Head>
 			<div>
-				<p>Latitude: {location.lat}</p>
-				<p>Longitude: {location.lon}</p>
+				<h1>Weather Dashboard</h1>
+				<div>
+					<p>Latitude: {location.lat}</p>
+					<p>Longitude: {location.lon}</p>
+				</div>
+				<button
+					className="p-2 border-2 bg-cyan-500  border-black  hover:bg-cyan-300"
+					onClick={getGeolocationData}
+				>
+					Get Current Location
+				</button>
+
+				<button
+					className="p-2 border-2 bg-cyan-500  border-black  hover:bg-cyan-300"
+					onClick={getCurrentWeather}
+				>
+					Get Current Weather
+				</button>
+
+				<WeatherDisplay
+					location={location}
+					current={weatherData.current}
+					daily={weatherData.daily}
+				/>
+
+				<WeatherCard
+					title={'Wind'}
+					desc={'Today wind speed'}
+					current={weatherData.current}
+				/>
+				<WeatherCard
+					title={'Pressure'}
+					desc={'Today pressure'}
+					current={weatherData.current}
+				/>
+				<WeatherCard
+					title={'Humidity'}
+					desc={'Today humidity'}
+					current={weatherData.current}
+				/>
+				<WeatherCard
+					title={'UV Index'}
+					desc={'Today UV Index'}
+					current={weatherData.current}
+				/>
 			</div>
-			<button
-				className="p-2 border-2 bg-cyan-500  border-black  hover:bg-cyan-300"
-				onClick={getGeolocationData}
-			>
-				Get Current Location
-			</button>
-
-			<button
-				className="p-2 border-2 bg-cyan-500  border-black  hover:bg-cyan-300"
-				onClick={getCurrentWeather}
-			>
-				Get Current Weather
-			</button>
-
-			<WeatherDisplay
-				location={location}
-				current={weatherData.current}
-				daily={weatherData.daily}
-			/>
-
-			<WeatherCard
-				title={'Wind'}
-				desc={'Today wind speed'}
-				current={weatherData.current}
-			/>
-			<WeatherCard
-				title={'Pressure'}
-				desc={'Today pressure'}
-				current={weatherData.current}
-			/>
-			<WeatherCard
-				title={'Humidity'}
-				desc={'Today humidity'}
-				current={weatherData.current}
-			/>
-			<WeatherCard
-				title={'UV Index'}
-				desc={'Today UV Index'}
-				current={weatherData.current}
-			/>
-		</div>
+		</>
 	);
 };
 
