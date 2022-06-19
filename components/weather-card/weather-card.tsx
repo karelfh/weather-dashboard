@@ -48,9 +48,9 @@ const WeatherCard = ({
 							className={style['needle']}
 							style={{ transform: `rotate(${current?.wind_deg}deg)` }}
 						></div>
+						{current?.wind_deg}°
 					</div>
 				)}
-				{current?.wind_deg}°
 			</div>
 		</div>
 	);
