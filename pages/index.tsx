@@ -58,32 +58,23 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 					Weather for {location.name}, {location.country}
 				</title>
 			</Head>
-			<div>
+			{/* TODO: This section is for testing only */}
+			<section className="testing">
 				<h1>Weather Dashboard</h1>
 				<div>
 					<p>Latitude: {location.lat}</p>
 					<p>Longitude: {location.lon}</p>
 				</div>
-				<button
-					className="p-2 border-2 bg-cyan-500  border-black  hover:bg-cyan-300"
-					onClick={getGeolocationData}
-				>
-					Get Current Location
-				</button>
+				<button onClick={getGeolocationData}>Get Current Location</button>
 
-				<button
-					className="p-2 border-2 bg-cyan-500  border-black  hover:bg-cyan-300"
-					onClick={getCurrentWeather}
-				>
-					Get Current Weather
-				</button>
-
+				<button onClick={getCurrentWeather}>Get Current Weather</button>
+			</section>
+			<section className="current-weather">
 				<WeatherDisplay
 					location={location}
 					current={weatherData.current}
 					daily={weatherData.daily}
 				/>
-
 				<WeatherCard
 					title={'Wind'}
 					desc={'Today wind speed'}
@@ -104,7 +95,8 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 					desc={'Today UV Index'}
 					current={weatherData.current}
 				/>
-			</div>
+			</section>
+			<section className="weather-forecast"></section>
 		</>
 	);
 };

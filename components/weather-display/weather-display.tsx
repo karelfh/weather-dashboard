@@ -20,7 +20,7 @@ const WeatherDisplay = ({
 	const currentTime = current?.dt != null && `${hour}:${minutes}`;
 
 	return (
-		<div>
+		<article>
 			<div>
 				<div>
 					<div>
@@ -76,7 +76,7 @@ const WeatherDisplay = ({
 					</div>
 				</div>
 			</div>
-		</div>
+		</article>
 	);
 };
 

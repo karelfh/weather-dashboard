@@ -32,14 +32,14 @@ const WeatherCard = ({
 	}
 
 	return (
-		<div>
-			<article>
+		<article>
+			<div>
 				<h2>{title}</h2>
 				<p>{desc}</p>
 				<p>
 					{value} {units}
 				</p>
-			</article>
+			</div>
 			<div>
 				{/* TODO: Create separate components for each title */}
 				{title === 'Wind' && (
@@ -52,7 +52,7 @@ const WeatherCard = ({
 					</div>
 				)}
 			</div>
-		</div>
+		</article>
 	);
 };
 
