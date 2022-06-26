@@ -13,7 +13,8 @@ const WeatherForecastList = ({ daily }: { daily?: Daily[] }) => {
 						const dateDay =
 							day.dt && ('0' + new Date(day.dt * 1000).getDate()).slice(-2);
 						const dateMonth =
-							day.dt && ('0' + new Date(day.dt * 1000).getMonth()).slice(-2);
+							day.dt &&
+							('0' + (new Date(day.dt * 1000).getMonth() + 1)).slice(-2);
 						const dateYear = day.dt && new Date(day.dt * 1000).getFullYear();
 
 						// If the day is tomorrow, then display "Tomorrow" else display the full date
