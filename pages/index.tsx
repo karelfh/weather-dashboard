@@ -9,6 +9,7 @@ import { getCurrentWeather } from './api/currentWeather';
 import { getCurrentLocation } from './api/currentLocation';
 import WeatherCard from '../components/weather-card/weather-card';
 import WeatherDisplay from '../components/weather-display/weather-display';
+import WeatherForecastList from '../components/weather-forecast-list/weather-forecast-list';
 
 // TODO: Replace any data type for initialData
 const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
@@ -96,7 +97,10 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 					current={weatherData.current}
 				/>
 			</section>
-			<section className="weather-forecast"></section>
+			<hr />
+			<section className="weather-forecast">
+				<WeatherForecastList daily={weatherData.daily} />
+			</section>
 		</>
 	);
 };
