@@ -59,9 +59,16 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 					Weather for {location.name}, {location.country}
 				</title>
 			</Head>
-			{/* TODO: This section is for testing only */}
-			<section className="testing">
-				<h1>Weather Dashboard</h1>
+			{/* TODO: This section is for testing only - will be removed */}
+			<section
+				className="testing"
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					paddingBottom: '2rem',
+				}}
+			>
 				<div>
 					<p>Latitude: {location.lat}</p>
 					<p>Longitude: {location.lon}</p>
