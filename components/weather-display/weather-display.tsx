@@ -1,6 +1,13 @@
+import { IconContext } from 'react-icons';
+import { MdOutlineLocationOn } from 'react-icons/md';
+import { GiWindsock } from 'react-icons/gi';
+import { WiBarometer, WiHumidity } from 'react-icons/wi';
+
 import type { Current, Daily, Location } from '../../types/typeWeatherApi';
 
 import GraphTemp from '../graph-temp/graph-temp';
+
+import style from './weather-display.module.scss';
 
 const WeatherDisplay = ({
 	location,
@@ -20,63 +27,44 @@ const WeatherDisplay = ({
 	const currentTime = current?.dt != null && `${hour}:${minutes}`;
 
 	return (
-		<article>
-			<div>
-				<div>
-					<div>
-						<i>Icon</i>
-						<p>
-							{location.name}, {location.country}
-						</p>
-					</div>
-					<div>
-						<p>Today at {currentTime}</p>
-					</div>
-				</div>
-				<div>
-					<h2>{current != null && Math.round(current.temp)} C</h2>
-					<p>Mostly clear</p>
-				</div>
-				<div>
-					<div>
-						<i>Icon</i>
-						<p>{current != null && Math.round(current.pressure)} hPa</p>
-					</div>
-					<div>
-						<i>Icon</i>
-						<p>{current != null && Math.round(current.humidity)} %</p>
-					</div>
-					<div>
-						<i>Icon</i>
-						<p>{current != null && Math.round(current.wind_speed)} km/h</p>
-					</div>
-				</div>
-			</div>
-			<div>
-				{/* TODO: Create separete component */}
-				<div>
-					{daily != null && <GraphTemp temp={daily[0].temp} />}
-					<div>
-						<div>
-							<p>Morning</p>
-							<p>{daily != null && Math.round(daily[0].temp.morn)}</p>
+		<IconContext.Provider value={{ className: style['icon'] }}>
+			<article className={style['weather-display']}>
+				<div className={style['weather-container']}>
+					<div className={style['location-time']}>
+						<div className={style['location']}>
+							<MdOutlineLocationOn className={style['icon-location']} />
+							<p>
+								{location.name}, {location.country}
+							</p>
 						</div>
-						<div>
-							<p>Afternoon</p>
-							<p>{daily != null && Math.round(daily[0].temp.day)}</p>
+						<div className={style['time']}>
+							<p>Today at {currentTime}</p>
 						</div>
-						<div>
-							<p>Evening</p>
-							<p>{daily != null && Math.round(daily[0].temp.eve)}</p>
+					</div>
+					<div className={style['temp-container']}>
+						<h2 className={style['weather-temp']}>
+							{current != null && Math.round(current.temp)} &deg;C
+						</h2>
+						<p className={style['weather-desc']}>Mostly clear</p>
+					</div>
+					<div className={style['weather-data']}>
+						<div className={style['data-container']}>
+							<WiBarometer className={style['icon-pressure']} />
+							<p>{current != null && Math.round(current.pressure)} hPa</p>
 						</div>
-						<div>
-							<p>Night</p>
-							<p>{daily != null && Math.round(daily[0].temp.night)}</p>
+						<div className={style['data-container']}>
+							<WiHumidity className={style['icon-humidity']} />
+							<p>{current != null && Math.round(current.humidity)} %</p>
+						</div>
+						<div className={style['data-container']}>
+							<GiWindsock className={style['icon-wind-speed']} />
+							<p>{current != null && Math.round(current.wind_speed)} km/h</p>
 						</div>
 					</div>
 				</div>
-			</div>
-		</article>
+				{daily != null && <GraphTemp temp={daily[0].temp} />}
+			</article>
+		</IconContext.Provider>
 	);
 };
 
