@@ -10,6 +10,8 @@ import { Line } from 'react-chartjs-2';
 
 import type { Daily } from '../../types/typeWeatherApi';
 
+import style from './graph-temp.module.scss';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const GraphTemp = ({ temp }: Daily) => {
@@ -27,44 +29,64 @@ const GraphTemp = ({ temp }: Daily) => {
 	}, [temp]);
 
 	return (
-		<Line
-			data={{
-				labels: [
-					`Morning ${Math.round(temperature.morn)} C`,
-					`Afternoon ${Math.round(temperature.day)} C`,
-					`Evening ${Math.round(temperature.eve)} C`,
-					`Night ${Math.round(temperature.night)} C`,
-				],
-				datasets: [
-					{
-						label: 'temps',
-						data: [
-							temperature.morn,
-							temperature.day,
-							temperature.eve,
-							temperature.night,
-						],
-						tension: 0.2,
-						borderColor: 'rgb(53, 162, 235)',
-						backgroundColor: 'rgba(53, 162, 235, 0.5)',
-					},
-				],
-			}}
-			options={{
-				responsive: true,
-				scales: {
-					xAxis: {
-						grid: {
+		<div className={style['temp-graph']}>
+			<Line
+				data={{
+					labels: ['', '', '', ''],
+					datasets: [
+						{
+							label: 'temps',
+							data: [
+								temperature.morn,
+								temperature.day,
+								temperature.eve,
+								temperature.night,
+							],
+							tension: 0.2,
+							borderWidth: 3,
+							borderColor: '#23609B',
+							backgroundColor: '#23609B',
+							pointBorderColor: '#23609B',
+							pointBackgroundColor: '#FFF',
+							pointBorderWidth: 2,
+							pointRadius: 4,
+						},
+					],
+				}}
+				options={{
+					responsive: true,
+					scales: {
+						xAxis: {
+							grid: {
+								display: false,
+								drawBorder: false,
+							},
+						},
+						yAxis: {
 							display: false,
-							drawBorder: false,
 						},
 					},
-					yAxis: {
-						display: false,
-					},
-				},
-			}}
-		/>
+				}}
+			/>
+			<div className={style['legend']}>
+				<div className={style['legend-item']}>
+					<p>Morning</p>
+					<p>{temperature.morn} &deg;C</p>
+				</div>
+				<div className={style['legend-item']}>
+					<p>Afternoon</p>
+					<p>{temperature.day} &deg;C</p>
+				</div>
+				<div className={style['legend-item']}>
+					<p>Evening</p>
+					<p>{temperature.eve} &deg;C</p>
+				</div>
+				<div className={style['legend-item']}>
+					<p>Night</p>
+					<p>{temperature.night} &deg;C</p>
+				</div>
+			</div>
+		</div>
 	);
 };
 
