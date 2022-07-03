@@ -6,6 +6,7 @@ import { WiBarometer, WiHumidity } from 'react-icons/wi';
 import type { Current, Daily, Location } from '../../types/typeWeatherApi';
 
 import GraphTemp from '../graph-temp/graph-temp';
+import TimeDisplay from '../utils/time-display/time-display';
 
 import style from './weather-display.module.scss';
 
@@ -18,14 +19,6 @@ const WeatherDisplay = ({
 	current?: Current;
 	daily?: Daily[];
 }) => {
-	const hour =
-		current?.dt != null &&
-		('0' + new Date(current?.dt * 1000).getHours()).slice(-2);
-	const minutes =
-		current?.dt != null &&
-		('0' + new Date(current?.dt * 1000).getMinutes()).slice(-2);
-	const currentTime = current?.dt != null && `${hour}:${minutes}`;
-
 	return (
 		<IconContext.Provider value={{ className: style['icon'] }}>
 			<article className={style['weather-display']}>
@@ -38,7 +31,9 @@ const WeatherDisplay = ({
 							</p>
 						</div>
 						<div className={style['time']}>
-							<p>Today at {currentTime}</p>
+							<p>
+								Today at <TimeDisplay time={current!.dt} />
+							</p>
 						</div>
 					</div>
 					<div className={style['temp-container']}>
