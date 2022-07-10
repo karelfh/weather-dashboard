@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Navbar from '../navbar/navbar';
 import Footer from '../footer/footer';
 
+import style from './layout.module.scss';
+
 const Layout = (props: any) => {
 	return (
 		<>
@@ -12,7 +14,7 @@ const Layout = (props: any) => {
 				<meta charSet="UTF-8"></meta>
 			</Head>
 			<Navbar />
-			<main>{props.children}</main>
+			<main className={style['main']} >{props.children}</main>
 			<Footer />
 		</>
 	);
