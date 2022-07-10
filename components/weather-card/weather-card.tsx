@@ -1,6 +1,6 @@
 import type { Current } from '../../types/typeWeatherApi';
 
-import style from './weather-card.module.css';
+import style from './weather-card.module.scss';
 
 const WeatherCard = ({
 	title,
