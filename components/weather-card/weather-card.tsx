@@ -1,5 +1,7 @@
 import type { Current } from '../../types/typeWeatherApi';
 
+import WindGauge from '../weather-gauges/wind-gauge/wind-gauge';
+
 import style from './weather-card.module.scss';
 
 const WeatherCard = ({
@@ -41,22 +43,13 @@ const WeatherCard = ({
 				</p>
 			</div>
 			<div className={style['gauge']}>
-				{/* TODO: Create separate components for each title */}
-				{title === 'Wind' && (
-					<div className={style['compass']}>
-						<div className={style['direction']}>
-							<p>
-								NE
-								<span>{current?.wind_deg}&deg;</span>
-							</p>
-						</div>
-						<div
-							className={style['arrow']}
-							style={{ transform: `rotate(${current?.wind_deg}deg)` }}
-						></div>
-						<div className={style['arrow-hand']}></div>
-					</div>
-				)}
+				{title === 'Wind' && <WindGauge windDirection={current?.wind_deg} />}
+				{/* TODO: Create gauge for Pressure */}
+				{title === 'Pressure' && <div></div>}
+				{/* TODO: Create gauge for Humidity */}
+				{title === 'Humidity' && <div></div>}
+				{/* TODO: Create gauge for UV Index */}
+				{title === 'UV Index' && <div></div>}
 			</div>
 		</article>
 	);
