@@ -32,23 +32,29 @@ const WeatherCard = ({
 	}
 
 	return (
-		<article>
-			<div>
-				<h2>{title}</h2>
-				<p>{desc}</p>
-				<p>
+		<article className={style['weather-card']}>
+			<div className={style['info']}>
+				<h2 className={style['title']}>{title}</h2>
+				<p className={style['description']}>{desc}</p>
+				<p className={style['value']}>
 					{value} {units}
 				</p>
 			</div>
-			<div>
+			<div className={style['gauge']}>
 				{/* TODO: Create separate components for each title */}
 				{title === 'Wind' && (
-					<div className={style['outer']}>
+					<div className={style['compass']}>
+						<div className={style['direction']}>
+							<p>
+								NE
+								<span>{current?.wind_deg}&deg;</span>
+							</p>
+						</div>
 						<div
-							className={style['needle']}
+							className={style['arrow']}
 							style={{ transform: `rotate(${current?.wind_deg}deg)` }}
 						></div>
-						{current?.wind_deg}°
+						<div className={style['arrow-hand']}></div>
 					</div>
 				)}
 			</div>

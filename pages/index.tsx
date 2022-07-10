@@ -7,7 +7,7 @@ import type { Data, Location } from '../types/typeWeatherApi';
 
 import { getCurrentWeather } from './api/currentWeather';
 import { getCurrentLocation } from './api/currentLocation';
-import WeatherCard from '../components/weather-card/weather-card';
+import WeatherCardList from '../components/weather-card-list/weather-card-list';
 import WeatherDisplay from '../components/weather-display/weather-display';
 import WeatherForecastList from '../components/weather-forecast-list/weather-forecast-list';
 
@@ -83,26 +83,7 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 					current={weatherData.current}
 					daily={weatherData.daily}
 				/>
-				<WeatherCard
-					title={'Wind'}
-					desc={'Today wind speed'}
-					current={weatherData.current}
-				/>
-				<WeatherCard
-					title={'Pressure'}
-					desc={'Today pressure'}
-					current={weatherData.current}
-				/>
-				<WeatherCard
-					title={'Humidity'}
-					desc={'Today humidity'}
-					current={weatherData.current}
-				/>
-				<WeatherCard
-					title={'UV Index'}
-					desc={'Today UV Index'}
-					current={weatherData.current}
-				/>
+				<WeatherCardList currentWeatherData={weatherData.current} />
 			</section>
 			<hr />
 			<section className="weather-forecast">
