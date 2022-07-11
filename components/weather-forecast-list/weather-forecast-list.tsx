@@ -3,11 +3,13 @@ import type { Date } from '../../types/typeDate';
 
 import WeatherForecastCard from '../weather-forecast-card/weather-forecast-card';
 
+import style from './weather-forecast-list.module.scss';
+
 const WeatherForecastList = ({ daily }: { daily?: Daily[] }) => {
 	return (
 		<>
-			<h2>Weather Forecast</h2>
-			<div>
+			<h2 className={style['header']}>Weather Forecast</h2>
+			<div className={style['list']}>
 				{daily &&
 					// Skip first element because it's the current day
 					daily.slice(1).map((day: Daily, index: number) => {
@@ -15,7 +17,7 @@ const WeatherForecastList = ({ daily }: { daily?: Daily[] }) => {
 						const dateWeekDay =
 							day.dt &&
 							new Date(day.dt * 1000).toLocaleDateString('en-US', {
-								weekday: 'short',
+								weekday: 'long',
 							});
 						const dateDay =
 							day.dt && ('0' + new Date(day.dt * 1000).getDate()).slice(-2);
