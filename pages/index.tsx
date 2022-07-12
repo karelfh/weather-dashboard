@@ -64,18 +64,24 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 				className="testing"
 				style={{
 					display: 'flex',
-					flexDirection: 'column',
+					flexDirection: 'row',
+					justifyContent: 'space-around',
 					alignItems: 'center',
 					paddingBottom: '2rem',
 				}}
 			>
-				<div>
-					<p>Latitude: {location.lat}</p>
-					<p>Longitude: {location.lon}</p>
-				</div>
-				<button onClick={getGeolocationData}>Get Current Location</button>
-
-				<button onClick={getCurrentWeather}>Get Current Weather</button>
+				<button
+					style={{ padding: '0.5em', fontSize: '1em' }}
+					onClick={getGeolocationData}
+				>
+					Get Current Location
+				</button>
+				<button
+					style={{ padding: '0.5em', fontSize: '1em' }}
+					onClick={getCurrentWeather}
+				>
+					Get Current Weather
+				</button>
 			</section>
 			<section className="current-weather">
 				<WeatherDisplay
@@ -85,7 +91,6 @@ const Home: NextPage = ({ initialWeather, initialLocation }: any) => {
 				/>
 				<WeatherCardList currentWeatherData={weatherData.current} />
 			</section>
-			<hr />
 			<section className="weather-forecast">
 				<WeatherForecastList daily={weatherData.daily} />
 			</section>
