@@ -71,19 +71,19 @@ const GraphTemp = ({ temp }: Daily) => {
 			<div className={style['legend']}>
 				<div className={style['legend-item']}>
 					<p>Morning</p>
-					<p>{temperature.morn} &deg;C</p>
+					<p>{Math.round(temperature.morn)} &deg;C</p>
 				</div>
 				<div className={style['legend-item']}>
 					<p>Afternoon</p>
-					<p>{temperature.day} &deg;C</p>
+					<p>{Math.round(temperature.day)} &deg;C</p>
 				</div>
 				<div className={style['legend-item']}>
 					<p>Evening</p>
-					<p>{temperature.eve} &deg;C</p>
+					<p>{Math.round(temperature.eve)} &deg;C</p>
 				</div>
 				<div className={style['legend-item']}>
 					<p>Night</p>
-					<p>{temperature.night} &deg;C</p>
+					<p>{Math.round(temperature.night)} &deg;C</p>
 				</div>
 			</div>
 		</div>
