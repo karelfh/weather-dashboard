@@ -1,3 +1,4 @@
+@import '../../styles/variables.scss';
 .weather-display {
   display: flex;
   flex-direction: column;
@@ -5,7 +6,7 @@
   padding: 2em;
   max-width: 600px;
   border-radius: 10px;
-  background-color: #C4E2FF;
+  background-color: $color-blue-light;
 }
 
 .weather-container {
@@ -45,13 +46,13 @@
 .weather-temp {
   font-size: 3rem;
   margin: 0;
-  color: #23609B;
+  color: $color-blue;
 }
 
 .weather-desc {
   font-size: 1.25rem;
   margin: 0;
-  color: #23609B;
+  color: $color-blue;
 }
 
 .weather-data {
@@ -66,7 +67,7 @@
 }
 
 .icon {
-  color: #23609B;
+  color: $color-blue;
   vertical-align: middle;
 }
 

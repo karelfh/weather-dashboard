@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .weather-card {
   display: flex;
   flex-direction: row;
@@ -9,25 +11,25 @@
   margin: 0 auto;
   padding: 1em;
   border-radius: 10px;
-  background-color: #ECF3F8;
+  background-color: $color-blue-alt;
 }
 
 .title {
   margin: 0;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #2C3E50;
+  font-size: 1.25em;
+  font-weight: $font-weight-bold;
+  color: $color-blue-dark;
 }
 
 .description {
   margin: 1em 0;
   font-size: 1em;
-  color: #646464;
+  color: $color-gray;
 }
 
 .value {
   margin: 0;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #2C3E50;
+  font-size: 1.25em;
+  font-weight: $font-weight-bold;
+  color: $color-blue-dark;
 }

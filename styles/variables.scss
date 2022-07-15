@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+$font: 'Poppins', sans-serif;
+
+// Colors
+$color-blue-light: #C4E2FF;
+$color-blue: #23609B;
+$color-blue-dark: #2C3E50;
+$color-blue-alt: #ECF3F8;
+$color-gray: #646464;
+
+$color-shadow: rgba(0, 0, 0, 0.1);
+$color-black: rgb(20, 20, 20);
+$color-white: #fff;
+$color-white-transparent: rgba(255, 255, 255, 0.5);
+$color-red: #FF0000;
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+
+// Breakpoints
+@mixin breakpoint($point) {
+  @if $point =='large' {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+}

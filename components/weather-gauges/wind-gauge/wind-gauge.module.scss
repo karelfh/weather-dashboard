@@ -1,20 +1,22 @@
+@import '../../../styles/variables.scss';
+
 .compass {
   display: block;
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid #C4E2FF;
+  box-shadow: 0 0 10px $color-shadow;
+  border: 1px solid $color-blue-light;
   position: relative;
-  color: #23609B;
-  text-shadow: 1px 1px 1px white;
+  color: $color-blue;
+  text-shadow: 1px 1px 1px $color-white;
 
   &:before {
     content: "N";
-    font-weight: bold;
+    font-weight: $font-weight-bold;
     position: absolute;
     text-align: center;
-    color: #000;
+    color: $color-blue-dark;
     width: 100%;
     font-size: 14px;
     top: -5px;
@@ -24,7 +26,7 @@
     height: 100%;
     width: 100%;
     display: block;
-    background: #fff;
+    background: $color-white;
     border-radius: 100%;
 
     p {
@@ -66,7 +68,7 @@
       height: 0;
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
-      border-bottom: 10px solid red;
+      border-bottom: 10px solid $color-red;
       position: absolute;
       top: -6px;
       left: 50%;
