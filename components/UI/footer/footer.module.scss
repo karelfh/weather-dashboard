@@ -1,0 +1,32 @@
+@import '../../../styles/variables.scss';
+
+.footer {
+  display: flex;
+  align-items: center;
+  height: $footer-height;
+  margin-top: 2em;
+  padding: 1em 0;
+  line-height: 1.5;
+  color: $color-blue-alt;
+  background-color: $color-blue-dark;
+}
+
+.copy {
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.copy-link,
+.copy-link:visited {
+  padding-bottom: 2px;
+  color: $color-blue-light;
+  text-decoration: none;
+  background: linear-gradient(0deg, currentcolor, currentcolor) bottom center no-repeat;
+  background-size: 0px 2px;
+  transition: all 0.15s ease-in-out;
+}
+
+.copy-link:hover,
+.copy-link:focus {
+  background-size: 100% 2px;
+}

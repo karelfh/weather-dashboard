@@ -31,6 +31,9 @@ $border-radius: 0.5em;
 // Header
 $header-height: 80px;
 
+// Footer
+$footer-height: 60px;
+
 // Breakpoints
 @mixin breakpoint($point) {
   @if $point =='small' {
