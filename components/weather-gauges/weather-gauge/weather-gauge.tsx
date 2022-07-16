@@ -1,36 +1,46 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
 
 import 'react-circular-progressbar/dist/styles.css';
-import style from './humidity-gauge.module.scss';
+import style from './weather-gauge.module.scss';
 
-const HumidityGauge = ({ humidity }: { humidity?: number }) => {
-	if (!humidity) {
+const WeatherGauge = ({
+	value,
+	lowValue,
+	highValue,
+	idealRange,
+}: {
+	value?: number;
+	lowValue: number;
+	highValue: number;
+	idealRange: number[];
+}) => {
+	if (!value) {
 		return null;
 	}
 
-	const lowestHumidity = 0;
-	const highestHumidity = 100;
-	const normalHumidityRange = [30, 50];
+	const lowestValue = lowValue;
+	const highestValue = highValue;
+	const idealValuesRange = idealRange;
 
-	const humidityPercent =
-		((humidity - lowestHumidity) / (highestHumidity - lowestHumidity)) * 100;
-	const humidityText =
-		humidity < normalHumidityRange[0]
+	const valuePercent =
+		((value - lowestValue) / (highestValue - lowestValue)) * 100;
+	const valueText =
+		value < idealValuesRange[0]
 			? 'low'
-			: humidity > normalHumidityRange[1]
+			: value > idealValuesRange[1]
 			? 'high'
 			: 'normal';
-	const humidityColor =
-		humidity < normalHumidityRange[0]
+	const valueColor =
+		value < idealValuesRange[0]
 			? '#4B8EB4'
-			: humidity > normalHumidityRange[1]
+			: value > idealValuesRange[1]
 			? '#FD6D45'
 			: '#53B480';
 
 	return (
 		<CircularProgressbar
-			value={humidityPercent}
-			text={`${humidityText}`}
+			value={valuePercent}
+			text={`${valueText}`}
 			circleRatio={0.7}
 			strokeWidth={10}
 			className={style['gauge']}
@@ -45,7 +55,7 @@ const HumidityGauge = ({ humidity }: { humidity?: number }) => {
 					strokeLinecap: 'round',
 					transform: 'rotate(-126deg)',
 					transformOrigin: 'center center',
-					stroke: humidityColor,
+					stroke: valueColor,
 				},
 				text: {
 					fill: '#2C3E50',
@@ -58,4 +68,4 @@ const HumidityGauge = ({ humidity }: { humidity?: number }) => {
 	);
 };
 
-export default HumidityGauge;
+export default WeatherGauge;

@@ -1,9 +1,9 @@
 import type { Current } from '../../types/typeWeatherApi';
 
 import WindGauge from '../weather-gauges/wind-gauge/wind-gauge';
-import PressureGauge from '../weather-gauges/pressure-gauge/pressure-gauge';
-import HumidityGauge from '../weather-gauges/humidity-gauge/humidity-gauge';
 import UVIndexGauge from '../weather-gauges/UV-index-gauge/uv-index-gauge';
+
+import WeatherGauge from '../weather-gauges/weather-gauge/weather-gauge';
 
 import style from './weather-card.module.scss';
 
@@ -47,8 +47,22 @@ const WeatherCard = ({
 			</div>
 			<div className={style['gauge']}>
 				{title === 'Wind' && <WindGauge windDirection={current?.wind_deg} />}
-				{title === 'Pressure' && <PressureGauge pressure={current?.pressure} />}
-				{title === 'Humidity' && <HumidityGauge humidity={current?.humidity} />}
+				{title === 'Pressure' && (
+					<WeatherGauge
+						value={current?.pressure}
+						lowValue={978.25}
+						highValue={1048.25}
+						idealRange={[1009.14, 1022.69]}
+					/>
+				)}
+				{title === 'Humidity' && (
+					<WeatherGauge
+						value={current?.humidity}
+						lowValue={0}
+						highValue={100}
+						idealRange={[30, 50]}
+					/>
+				)}
 				{title === 'UV Index' && <UVIndexGauge uvi={current?.uvi} />}
 			</div>
 		</article>
