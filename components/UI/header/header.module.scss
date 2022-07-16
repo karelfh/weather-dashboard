@@ -1,0 +1,35 @@
+@import '../../../styles/variables.scss';
+
+.header {
+  width: 100%;
+  height: $header-height;
+  padding: 0 1.5em;
+  margin-bottom: 2em;
+  background: $color-blue-dark;
+  transition: all 0.3s ease;
+
+  @include breakpoint('medium') {
+    padding: 0 3em;
+  }
+
+  .logo {
+    font-family: $font-hand;
+    font-size: 1.75em;
+    font-weight: $font-weight-light;
+    color: $color-blue-alt;
+    z-index: 100;
+  }
+
+  .content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1920px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    color: $color-blue-light;
+    z-index: 100;
+  }
+}

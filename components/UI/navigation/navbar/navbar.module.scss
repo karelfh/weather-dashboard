@@ -1,0 +1,92 @@
+@import '../../../../styles/variables.scss';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 100%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba($color-blue-dark, 0.9);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transform: translate(0);
+  transition: transform 0.3s ease;
+
+  @include breakpoint('medium') {
+    position: static;
+    flex-direction: row;
+    width: auto;
+    height: 100%;
+    background: transparent;
+    transform: none;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    @include breakpoint('medium') {
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 0;
+      margin-right: $spacing-medium;
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-bottom: $spacing-large;
+
+        @include breakpoint('medium') {
+          margin-bottom: 0;
+          margin-right: $spacing-small;
+        }
+      }
+    }
+  }
+}
+
+.menuOpen {
+  transform: translate(100%);
+}
+
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease all;
+
+  &:hover .toggle-icon {
+    background: $color-blue;
+  }
+
+  @include breakpoint('medium') {
+    display: none;
+  }
+
+  .toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: $color-blue-dark;
+    border-radius: $border-radius;
+    background: $color-blue-light;
+    transition: 0.3s ease all;
+
+    &:hover {
+      background: $color-blue;
+    }
+  }
+
+}

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Navbar from '../navbar/navbar';
+import Header from '../header/header';
 import Footer from '../footer/footer';
 
 import style from './layout.module.scss';
@@ -13,8 +13,8 @@ const Layout = (props: any) => {
 				<meta name="description" content="Put your description here."></meta>
 				<meta charSet="UTF-8"></meta>
 			</Head>
-			<Navbar />
-			<main className={style['main']} >{props.children}</main>
+			<Header />
+			<main className={style['main']}>{props.children}</main>
 			<Footer />
 		</>
 	);

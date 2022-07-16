@@ -1,0 +1,22 @@
+@import '../../../../styles/variables.scss';
+
+.nav-link {
+  padding: 0.5rem 1.125rem;
+  text-decoration: none;
+  color: $color-blue-light;
+  border-radius: $border-radius;
+  transition: 0.3s ease all;
+
+  &:hover {
+    background: rgba($color-blue-light, 0.2);
+  }
+}
+
+.active {
+  background: $color-blue-light;
+  color: $color-blue-dark;
+
+  &:hover {
+    background: $color-blue-light;
+  }
+}

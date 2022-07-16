@@ -1,3 +1,9 @@
+@import '../../../styles/variables.scss';
+
 .main {
   margin: 0 1em;
+
+  @include breakpoint('medium') {
+    margin: 0 auto;
+  }
 }

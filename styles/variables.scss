@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Poppins:wght@300;400;700&display=swap');
 
 $font: 'Poppins', sans-serif;
+$font-hand: 'Berkshire Swash', cursive;
 
 // Colors
 $color-blue-light: #C4E2FF;
@@ -20,10 +21,39 @@ $font-weight-light: 300;
 $font-weight-regular: 400;
 $font-weight-bold: 700;
 
+// Spacing
+$spacing-small: 0.5em;
+$spacing-medium: 1em;
+$spacing-large: 2em;
+
+// Border
+$border-radius: 0.5em;
+
+// Header
+$header-height: 80px;
+
 // Breakpoints
 @mixin breakpoint($point) {
-  @if $point =='large' {
+  @if $point =='small' {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+
+  @if $point =='medium' {
     @media (min-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $point =='large' {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+
+  @if $point =='xlarge' {
+    @media (min-width: 1200px) {
       @content;
     }
   }
