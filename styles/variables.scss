@@ -60,3 +60,11 @@ $footer-height: 60px;
     }
   }
 }
+
+:export {
+  colorBlueLight: $color-blue-light;
+  colorBlue: $color-blue;
+  colorBlueDark: $color-blue-dark;
+  colorBlueAlt: $color-blue-alt;
+  colorGray: $color-gray;
+}

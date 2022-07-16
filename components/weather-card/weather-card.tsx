@@ -1,6 +1,7 @@
 import type { Current } from '../../types/typeWeatherApi';
 
 import WindGauge from '../weather-gauges/wind-gauge/wind-gauge';
+import PressureGauge from '../weather-gauges/pressure-gauge/pressure-gauge';
 
 import style from './weather-card.module.scss';
 
@@ -44,8 +45,7 @@ const WeatherCard = ({
 			</div>
 			<div className={style['gauge']}>
 				{title === 'Wind' && <WindGauge windDirection={current?.wind_deg} />}
-				{/* TODO: Create gauge for Pressure */}
-				{title === 'Pressure' && <div></div>}
+				{title === 'Pressure' && <PressureGauge pressure={current?.pressure} />}
 				{/* TODO: Create gauge for Humidity */}
 				{title === 'Humidity' && <div></div>}
 				{/* TODO: Create gauge for UV Index */}
