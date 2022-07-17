@@ -57,7 +57,9 @@ const WeatherDisplay = ({
 						</div>
 					</div>
 				</div>
-				{daily != null && <GraphTemp temp={daily[0].temp} />}
+				<div className={style['temp-graph']}>
+					{daily != null && <GraphTemp temp={daily[0].temp} />}
+				</div>
 			</article>
 		</IconContext.Provider>
 	);

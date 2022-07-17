@@ -4,6 +4,12 @@
   margin: 0 1em;
 
   @include breakpoint('medium') {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    max-width: 1200px;
+    height: 100%;
     margin: 0 auto;
+    padding: 3em 0;
   }
 }

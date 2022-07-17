@@ -29,7 +29,7 @@ const GraphTemp = ({ temp }: Daily) => {
 	}, [temp]);
 
 	return (
-		<div className={style['temp-graph']}>
+		<>
 			<Line
 				data={{
 					labels: ['', '', '', ''],
@@ -88,7 +88,7 @@ const GraphTemp = ({ temp }: Daily) => {
 					</p>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

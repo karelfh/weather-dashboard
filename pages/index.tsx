@@ -12,6 +12,8 @@ import WeatherCardList from '../components/weather-card-list/weather-card-list';
 import WeatherDisplay from '../components/weather-display/weather-display';
 import WeatherForecastList from '../components/weather-forecast-list/weather-forecast-list';
 
+import style from './index.module.scss';
+
 const Home: NextPage<HomeProps> = ({
 	initialWeather,
 	initialLocation,
@@ -62,34 +64,10 @@ const Home: NextPage<HomeProps> = ({
 		<>
 			<Head>
 				<title>
-					Weather for {location.name}, {location.country}
+					WeatherWizz | {location.name}, {location.country}
 				</title>
 			</Head>
-			{/* TODO: This section is for testing only - will be removed */}
-			<section
-				className="testing"
-				style={{
-					display: 'flex',
-					flexDirection: 'row',
-					justifyContent: 'space-around',
-					alignItems: 'center',
-					paddingBottom: '2rem',
-				}}
-			>
-				<button
-					style={{ padding: '0.5em', fontSize: '1em' }}
-					onClick={getGeolocationData}
-				>
-					Get Current Location
-				</button>
-				<button
-					style={{ padding: '0.5em', fontSize: '1em' }}
-					onClick={getCurrentWeather}
-				>
-					Get Current Weather
-				</button>
-			</section>
-			<section className="current-weather">
+			<section className={style['current-weather']}>
 				<WeatherDisplay
 					location={location}
 					current={weatherData.current}
@@ -97,7 +75,7 @@ const Home: NextPage<HomeProps> = ({
 				/>
 				<WeatherCardList currentWeatherData={weatherData.current} />
 			</section>
-			<section className="weather-forecast">
+			<section className={style['weather-forecast']}>
 				<WeatherForecastList daily={weatherData.daily} />
 			</section>
 		</>

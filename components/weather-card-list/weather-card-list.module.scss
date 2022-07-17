@@ -1,6 +1,14 @@
+@import '../../styles/variables.scss';
+
 .weather-indicators {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1em;
-  margin-top: 1em;
+  grid-gap: $spacing-medium;
+  margin-top: $spacing-medium;
+
+  @include breakpoint('medium') {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $spacing-large;
+      margin-top: $spacing-large;
+  }
 }

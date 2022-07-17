@@ -8,7 +8,7 @@ import style from './weather-forecast-list.module.scss';
 const WeatherForecastList = ({ daily }: { daily?: Daily[] }) => {
 	return (
 		<>
-			<h2 className={style['header']}>Weather Forecast</h2>
+			<h2 className={style['header']}>This week</h2>
 			<div className={style['list']}>
 				{daily &&
 					// Skip first element because it's the current day

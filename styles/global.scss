@@ -6,6 +6,8 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0;
+    padding: 0;
 }
 
 * {
@@ -13,18 +15,21 @@
 }
 
 html {
+  height: 100vh;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
+  position: relative;
+  height: 100vh;
   margin: 0;
   font-family: $font;
 }
 
-main {
-  max-width: 40em;
-  margin: 0 auto;
+#__next {
+  height: 100%;
+  position: relative;
 }
 
 h1 {

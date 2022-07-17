@@ -4,18 +4,43 @@
   flex-direction: column;
   margin: 0 auto;
   padding: 2em;
-  max-width: 600px;
-  border-radius: 10px;
+  border-radius: $border-radius;
   background-color: $color-blue-light;
+
+  @include breakpoint('medium') {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 750px;
+  }
 }
 
 .weather-container {
   padding-bottom: 2em;
+
+  @include breakpoint('medium') {
+    width: 50%;
+    padding: 0 2em 0 0;
+  }
+}
+
+.temp-graph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100%;
+  padding: 1em;
+  border-radius: $border-radius;
+  background-color: $color-white-transparent;
+
+  @include breakpoint('medium') {
+    width: 50%;
+  }
 }
 
 .location-time {
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin: 0 auto;
 }
 

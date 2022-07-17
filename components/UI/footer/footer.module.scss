@@ -3,12 +3,21 @@
 .footer {
   display: flex;
   align-items: center;
+  width: 100%;
   height: $footer-height;
-  margin-top: 2em;
+  margin-top: auto;
   padding: 1em 0;
   line-height: 1.5;
   color: $color-blue-alt;
   background-color: $color-blue-dark;
+
+// Footer at the bottom of the page
+  @include breakpoint('medium') {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .copy {
