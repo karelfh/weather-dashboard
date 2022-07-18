@@ -3,7 +3,7 @@ import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export const getCurrentWeather = async (query: {
-	[key: string]: string | string[];
+	[key: string]: string | string[] | undefined;
 }) => {
 	const { lat, lon, exclude, units, lang } = query;
 
