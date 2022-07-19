@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 import type { NextPage, GetServerSideProps } from 'next';
@@ -17,48 +16,27 @@ import style from './index.module.scss';
 const Home: NextPage<HomeProps> = ({
 	initialWeather,
 	initialLocation,
+	weatherData,
+	locationData,
 }: {
 	initialWeather: Data;
 	initialLocation: Location;
+	weatherData: any;
+	locationData: any;
 }) => {
 	const [location, setLocation] = useState<Location>(initialLocation);
-	const [weatherData, setWeatherData] = useState<Data>(initialWeather);
+	const [currentWeatherData, setWeatherData] = useState<Data>(initialWeather);
 	// TODO: Ask user what units to display
 	const [units, setUnits] = useState('metric');
 	// TODO: Ask user what language to display
 	const [lang, setLang] = useState('en');
 
-	const getGeolocationData = () => {
-		navigator.geolocation.getCurrentPosition(
-			(position) => {
-				axios
-					.get(
-						`/api/currentLocation?lon=${position.coords.longitude}&lat=${position.coords.latitude}`
-					)
-					.then((response) => setLocation(response.data[0]));
-			},
-			(error) => {
-				// TODO: Handle user declining geolocation prompt
-				// eq. show message on screen that the app won't show
-				// weather for current location
-				console.warn(`ERROR(${error.code}): ${error.message}`);
-			},
-			{
-				timeout: 10000,
-				maximumAge: 0,
-			}
-		);
-	};
-
-	const getCurrentWeather = async () => {
-		await axios
-			.get(
-				`/api/currentWeather?lon=${location.lon}&lat=${location.lat}&units=${units}&lang=${lang}`
-			)
-			.then((response) => setWeatherData(response.data))
-			// TODO: Inform user of an error on screen not in console
-			.catch((error) => console.error(error));
-	};
+	useEffect(() => {
+		if (weatherData && locationData) {
+			setWeatherData(weatherData);
+			setLocation(locationData);
+		}
+	}, [weatherData, locationData]);
 
 	return (
 		<>
@@ -70,13 +48,13 @@ const Home: NextPage<HomeProps> = ({
 			<section className={style['current-weather']}>
 				<WeatherDisplay
 					location={location}
-					current={weatherData.current}
-					daily={weatherData.daily}
+					current={currentWeatherData.current}
+					daily={currentWeatherData.daily}
 				/>
-				<WeatherCardList currentWeatherData={weatherData.current} />
+				<WeatherCardList currentWeatherData={currentWeatherData.current} />
 			</section>
 			<section className={style['weather-forecast']}>
-				<WeatherForecastList daily={weatherData.daily} />
+				<WeatherForecastList daily={currentWeatherData.daily} />
 			</section>
 		</>
 	);

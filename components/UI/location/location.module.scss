@@ -1,0 +1,28 @@
+@import '../../../styles/variables.scss';
+
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease all;
+
+  .toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.45rem;
+    height: 2.45rem;
+    padding: $spacing-small;
+    margin-right: $spacing-medium;
+    color: $color-blue-light;
+    border-radius: $border-radius;
+    transform: scaleX(-1);
+    transition: 0.3s ease all;
+
+    &:hover {
+      color: $color-blue-dark;
+      background: $color-blue-light;
+    }
+  }
+}
