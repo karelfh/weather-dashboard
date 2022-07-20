@@ -100,20 +100,21 @@
 .icon {
   color: $color-blue;
   vertical-align: middle;
+  margin-right: 0.2em;
 }
 
 .icon-location {
   font-size: 1.75rem;
 }
 
-.icon-pressure {
+.icon-clouds {
   font-size: 2.25rem;
 }
 
-.icon-humidity {
-  font-size: 2.25rem;
-}
-
-.icon-wind-speed {
+.icon-visibility {
   font-size: 1.75rem;
+}
+
+.icon-dew-point {
+  font-size: 1.25rem;
 }

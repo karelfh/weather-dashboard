@@ -1,7 +1,7 @@
 import { IconContext } from 'react-icons';
-import { MdOutlineLocationOn } from 'react-icons/md';
-import { GiWindsock } from 'react-icons/gi';
-import { WiBarometer, WiHumidity } from 'react-icons/wi';
+import { MdOutlineLocationOn, MdOutlineVisibility } from 'react-icons/md';
+import { WiCloudy } from 'react-icons/wi';
+import { BsDropletHalf } from 'react-icons/bs';
 
 import type { Current, Daily, Location } from '../../types/typeWeatherApi';
 
@@ -19,11 +19,6 @@ const WeatherDisplay = ({
 	current?: Current;
 	daily?: Daily[];
 }) => {
-	const same =
-		current && Math.round(current.feels_like) !== Math.round(current.temp) ? (
-			<p>Feels like {Math.round(current.feels_like)}</p>
-		) : null;
-
 	return (
 		<IconContext.Provider value={{ className: style['icon'] }}>
 			<article className={style['weather-display']}>
@@ -55,16 +50,16 @@ const WeatherDisplay = ({
 					</div>
 					<div className={style['weather-data']}>
 						<div className={style['data-container']}>
-							<WiBarometer className={style['icon-pressure']} />
-							<p>{current != null && Math.round(current.pressure)} hPa</p>
+							<WiCloudy className={style['icon-clouds']} />
+							<p>{current?.clouds}%</p>
 						</div>
 						<div className={style['data-container']}>
-							<WiHumidity className={style['icon-humidity']} />
-							<p>{current != null && Math.round(current.humidity)} %</p>
+							<MdOutlineVisibility className={style['icon-visibility']} />
+							<p>{current != null && current.visibility / 1000} km</p>
 						</div>
 						<div className={style['data-container']}>
-							<GiWindsock className={style['icon-wind-speed']} />
-							<p>{current != null && Math.round(current.wind_speed)} km/h</p>
+							<BsDropletHalf className={style['icon-dew-point']} />
+							<p>{current != null && Math.round(current.dew_point)} &deg;C</p>
 						</div>
 					</div>
 				</div>
