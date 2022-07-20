@@ -3,8 +3,8 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import style from './uv-index-gauge.module.scss';
 
-const uviGauge = ({ uvi }: { uvi?: number }) => {
-	if (!uvi) {
+const UviGauge = ({ uvi }: { uvi?: number }) => {
+	if (uvi === undefined) {
 		return null;
 	}
 
@@ -71,4 +71,4 @@ const uviGauge = ({ uvi }: { uvi?: number }) => {
 	);
 };
 
-export default uviGauge;
+export default UviGauge;
