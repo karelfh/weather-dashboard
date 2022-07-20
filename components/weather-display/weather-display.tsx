@@ -19,6 +19,11 @@ const WeatherDisplay = ({
 	current?: Current;
 	daily?: Daily[];
 }) => {
+	const same =
+		current && Math.round(current.feels_like) !== Math.round(current.temp) ? (
+			<p>Feels like {Math.round(current.feels_like)}</p>
+		) : null;
+
 	return (
 		<IconContext.Provider value={{ className: style['icon'] }}>
 			<article className={style['weather-display']}>
@@ -40,6 +45,12 @@ const WeatherDisplay = ({
 						<h2 className={style['weather-temp']}>
 							{current != null && Math.round(current.temp)} &deg;C
 						</h2>
+						{current &&
+						Math.round(current.feels_like) !== Math.round(current.temp) ? (
+							<p className={style['temp-feels']}>
+								Feels like {Math.round(current.feels_like)} &deg;C
+							</p>
+						) : null}
 						<p className={style['weather-desc']}>Mostly clear</p>
 					</div>
 					<div className={style['weather-data']}>
