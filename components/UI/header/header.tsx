@@ -2,9 +2,15 @@ import Navbar from '../navigation/navbar/navbar';
 import NavItem from '../navigation/nav-item/nav-item';
 import Location from '../location/location';
 
+import type { Data } from '../../../types/typeWeatherApi';
+
 import style from './header.module.scss';
 
-const Header = ({ handleData }: { handleData: any }) => {
+const Header = ({
+	handleData,
+}: {
+	handleData: (weatherData: Data, locationData: Data) => void;
+}) => {
 	return (
 		<header className={style['header']}>
 			<div className={style['content']}>

@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: any }) => {
 	const [locationData, setLocationData] = useState<Data>();
 	const [weatherData, setWeatherData] = useState<Data>();
 
-	const handleWeatherData = (weatherData: any, locationData: any) => {
+	const handleWeatherData = (weatherData: Data, locationData: Data) => {
 		setWeatherData(weatherData);
 		setLocationData(locationData);
 	};

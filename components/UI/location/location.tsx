@@ -1,9 +1,15 @@
 import axios from 'axios';
 import { FaSearchLocation } from 'react-icons/fa';
 
+import { Data } from '../../../types/typeWeatherApi';
+
 import style from './location.module.scss';
 
-const Location = ({ handleData }: { handleData: any }) => {
+const Location = ({
+	handleData,
+}: {
+	handleData: (weatherData: Data, locationData: Data) => void;
+}) => {
 	const handleClick = () => {
 		navigator.geolocation.getCurrentPosition(
 			(position) => {
@@ -33,7 +39,9 @@ const Location = ({ handleData }: { handleData: any }) => {
 	const getCurrentWeather = async (locationData: any) => {
 		await axios
 			.get(
-				`/api/currentWeather?lon=${locationData.lon}&lat=${locationData.lat}&units=${`metric`}&lang=${locationData.country}`
+				`/api/currentWeather?lon=${locationData.lon}&lat=${
+					locationData.lat
+				}&units=${`metric`}&lang=${locationData.country}`
 			)
 			.then((response) => handleData(response.data, locationData))
 			// TODO: Inform user of an error on screen not in console
