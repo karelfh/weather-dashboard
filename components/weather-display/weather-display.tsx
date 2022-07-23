@@ -16,8 +16,8 @@ const WeatherDisplay = ({
 	daily,
 }: {
 	location: Location;
-	current?: Current;
-	daily?: Daily[];
+	current: Current;
+	daily: Daily[];
 }) => {
 	return (
 		<IconContext.Provider value={{ className: style['icon'] }}>
@@ -32,16 +32,15 @@ const WeatherDisplay = ({
 						</div>
 						<div className={style['time']}>
 							<p>
-								Today at <TimeDisplay time={current!.dt} />
+								Today at <TimeDisplay time={current.dt} />
 							</p>
 						</div>
 					</div>
 					<div className={style['temp-container']}>
 						<h2 className={style['weather-temp']}>
-							{current != null && Math.round(current.temp)} &deg;C
+							{Math.round(current.temp)} &deg;C
 						</h2>
-						{current &&
-						Math.round(current.feels_like) !== Math.round(current.temp) ? (
+						{Math.round(current.feels_like) !== Math.round(current.temp) ? (
 							<p className={style['temp-feels']}>
 								Feels like {Math.round(current.feels_like)} &deg;C
 							</p>
@@ -51,20 +50,20 @@ const WeatherDisplay = ({
 					<div className={style['weather-data']}>
 						<div className={style['data-container']}>
 							<WiCloudy className={style['icon-clouds']} />
-							<p>{current?.clouds}%</p>
+							<p>{current.clouds}%</p>
 						</div>
 						<div className={style['data-container']}>
 							<MdOutlineVisibility className={style['icon-visibility']} />
-							<p>{current != null && current.visibility / 1000} km</p>
+							<p>{current.visibility / 1000} km</p>
 						</div>
 						<div className={style['data-container']}>
 							<BsDropletHalf className={style['icon-dew-point']} />
-							<p>{current != null && Math.round(current.dew_point)} &deg;C</p>
+							<p>{Math.round(current.dew_point)} &deg;C</p>
 						</div>
 					</div>
 				</div>
 				<div className={style['temp-graph']}>
-					{daily != null && <GraphTemp temp={daily[0].temp} />}
+					<GraphTemp temp={daily[0].temp} />
 				</div>
 			</article>
 		</IconContext.Provider>

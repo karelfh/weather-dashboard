@@ -7,7 +7,7 @@ import style from './weather-card-list.module.scss';
 const WeatherCardList = ({
 	currentWeatherData,
 }: {
-	currentWeatherData?: Current;
+	currentWeatherData: Current;
 }) => {
 	return (
 		<article className={style['weather-indicators']}>

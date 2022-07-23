@@ -5,7 +5,7 @@ import WeatherForecastCard from '../weather-forecast-card/weather-forecast-card'
 
 import style from './weather-forecast-list.module.scss';
 
-const WeatherForecastList = ({ daily }: { daily?: Daily[] }) => {
+const WeatherForecastList = ({ daily }: { daily: Daily[] }) => {
 	return (
 		<>
 			<h2 className={style['header']}>This week</h2>

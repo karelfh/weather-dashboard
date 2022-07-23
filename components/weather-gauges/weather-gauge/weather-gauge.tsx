@@ -9,15 +9,11 @@ const WeatherGauge = ({
 	highValue,
 	idealRange,
 }: {
-	value?: number;
+	value: number;
 	lowValue: number;
 	highValue: number;
 	idealRange: number[];
 }) => {
-	if (!value) {
-		return null;
-	}
-
 	const lowestValue = lowValue;
 	const highestValue = highValue;
 	const idealValuesRange = idealRange;

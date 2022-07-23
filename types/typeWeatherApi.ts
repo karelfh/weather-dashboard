@@ -12,10 +12,10 @@ export interface Data {
 	lon: number;
 	timezone: string;
 	timezone_offset: number;
-	current?: Current;
-	minutely?: Minutely[];
-	hourly?: Current[];
-	daily?: Daily[];
+	current: Current;
+	minutely: Minutely[];
+	hourly: Current[];
+	daily: Daily[];
 	alerts?: Alert[];
 }
 
@@ -30,8 +30,8 @@ export interface Alert {
 
 export interface Current {
 	dt: number;
-	sunrise?: number;
-	sunset?: number;
+	sunrise: number;
+	sunset: number;
 	temp: number;
 	feels_like: number;
 	pressure: number;

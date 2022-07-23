@@ -3,7 +3,7 @@ import type { Date } from '../../types/typeDate';
 
 import style from './weather-forecast-card.module.scss';
 
-const WeatherForecastCard = ({ day, date }: { day?: Daily; date: Date }) => {
+const WeatherForecastCard = ({ day, date }: { day: Daily; date: Date }) => {
 	return (
 		<>
 			{day && (

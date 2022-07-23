@@ -14,26 +14,26 @@ const WeatherCard = ({
 }: {
 	title: string;
 	desc: string;
-	current?: Current;
+	current: Current;
 }) => {
 	let value: number | undefined;
 	let units: string = '';
 
 	switch (title) {
 		case 'Wind':
-			value = current?.wind_speed;
+			value = current.wind_speed;
 			units = 'km/h';
 			break;
 		case 'Pressure':
-			value = current?.pressure;
+			value = current.pressure;
 			units = 'hPa';
 			break;
 		case 'Humidity':
-			value = current?.humidity;
+			value = current.humidity;
 			units = '%';
 			break;
 		case 'UV Index':
-			value = current?.uvi;
+			value = current.uvi;
 	}
 
 	return (
@@ -46,10 +46,10 @@ const WeatherCard = ({
 				</p>
 			</div>
 			<div className={style['gauge']}>
-				{title === 'Wind' && <WindGauge windDirection={current?.wind_deg} />}
+				{title === 'Wind' && <WindGauge windDirection={current.wind_deg} />}
 				{title === 'Pressure' && (
 					<WeatherGauge
-						value={current?.pressure}
+						value={current.pressure}
 						lowValue={978.25}
 						highValue={1048.25}
 						idealRange={[1009.14, 1022.69]}
@@ -57,7 +57,7 @@ const WeatherCard = ({
 				)}
 				{title === 'Humidity' && (
 					<WeatherGauge
-						value={current?.humidity}
+						value={current.humidity}
 						lowValue={0}
 						highValue={100}
 						idealRange={[30, 50]}
