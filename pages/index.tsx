@@ -3,7 +3,6 @@ import Head from 'next/head';
 
 import type { NextPage, GetServerSideProps } from 'next';
 import type { Data, Location } from '../types/typeWeatherApi';
-import type { HomeProps } from '../types/pages';
 
 import { getCurrentWeather } from './api/currentWeather';
 import { getCurrentLocation } from './api/currentLocation';
@@ -12,6 +11,13 @@ import WeatherDisplay from '../components/weather-display/weather-display';
 import WeatherForecastList from '../components/weather-forecast-list/weather-forecast-list';
 
 import style from './index.module.scss';
+
+interface HomeProps {
+	initialWeather: Data;
+	initialLocation: Location;
+	weatherData: any;
+	locationData: any;
+}
 
 const Home: NextPage<HomeProps> = ({
 	initialWeather,
