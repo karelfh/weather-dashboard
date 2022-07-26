@@ -63,7 +63,7 @@ const WeatherCard = ({
 						idealRange={[30, 50]}
 					/>
 				)}
-				{title === 'UV Index' && <UVIndexGauge uvi={0} />}
+				{title === 'UV Index' && <UVIndexGauge uvi={current.uvi} />}
 			</div>
 		</article>
 	);
