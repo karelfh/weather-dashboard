@@ -12,7 +12,7 @@ const WindGauge = ({ windDirection }: { windDirection: number }) => {
 		<div className={style['compass']}>
 			<div className={style['direction']}>
 				<p>
-					{windDirection && `${getDirection(windDirection)}`}
+					{`${getDirection(windDirection)}`}
 					<span>{windDirection}&deg;</span>
 				</p>
 			</div>
