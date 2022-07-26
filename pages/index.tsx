@@ -32,10 +32,6 @@ const Home: NextPage<HomeProps> = ({
 }) => {
 	const [location, setLocation] = useState<Location>(initialLocation);
 	const [currentWeatherData, setWeatherData] = useState<Data>(initialWeather);
-	// TODO: Ask user what units to display
-	const [units, setUnits] = useState('metric');
-	// TODO: Ask user what language to display
-	const [lang, setLang] = useState('en');
 
 	useEffect(() => {
 		if (weatherData && locationData) {
