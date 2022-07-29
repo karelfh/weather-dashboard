@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Cookies from 'js-cookie';
 
 import type { NextPage, GetServerSideProps } from 'next';
 import type { Data, Location } from '../types/typeWeatherApi';
@@ -24,12 +25,7 @@ const Home: NextPage<HomeProps> = ({
 	initialLocation,
 	weatherData,
 	locationData,
-}: {
-	initialWeather: Data;
-	initialLocation: Location;
-	weatherData: any;
-	locationData: any;
-}) => {
+}: HomeProps) => {
 	const [location, setLocation] = useState<Location>(initialLocation);
 	const [currentWeatherData, setWeatherData] = useState<Data>(initialWeather);
 
@@ -37,6 +33,12 @@ const Home: NextPage<HomeProps> = ({
 		if (weatherData && locationData) {
 			setWeatherData(weatherData);
 			setLocation(locationData);
+
+			// TODO: Create a custom hook?
+			// TODO: Create a message to inform the user that we use cookies.
+			Cookies.set('loc', locationData.lat + '-' + locationData.lon, {
+				expires: 14,
+			});
 		}
 	}, [weatherData, locationData]);
 
@@ -62,10 +64,19 @@ const Home: NextPage<HomeProps> = ({
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const { cookie } = context.req.headers;
+
+	// Select only numbers from the cookie and split them into an array.
+	const locCookie = cookie && cookie.match(/\d+\.\d+/g);
+
+	// If the cookie is not set, use the default location (London).
+	const locLatCookie = locCookie ? locCookie[0] : '51.5072';
+	const locLonCookie = locCookie ? locCookie[1] : '0.1275';
+
 	const defaultWeatherQuery = {
-		lat: '51.5072',
-		lon: '0.1276',
+		lat: locLatCookie,
+		lon: locLonCookie,
 		exclude: '',
 		units: 'metric',
 		lang: 'en',
