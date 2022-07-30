@@ -36,9 +36,14 @@ const Home: NextPage<HomeProps> = ({
 
 			// TODO: Create a custom hook?
 			// TODO: Create a message to inform the user that we use cookies.
-			Cookies.set('loc', locationData.lat + '-' + locationData.lon, {
-				expires: 14,
-			});
+			if (Cookies.get('loc') === undefined) {
+				Cookies.set('loc', locationData.lat + '-' + locationData.lon, {
+					path: '/',
+					sameSite: 'strict',
+					secure: true,
+					expires: 14,
+				});
+			}
 		}
 	}, [weatherData, locationData]);
 
