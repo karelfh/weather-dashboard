@@ -52,12 +52,7 @@ const WeatherGraph = ({ daily }: { daily: Daily[] }) => {
 						<IoIosArrowDropleft className={style['header-icon']} />
 					)}
 				</button>
-				<h3
-					className={style['header-title']}
-					style={{ display: 'inline-block' }}
-				>
-					{pageList[page]}
-				</h3>
+				<h3 className={style['header-title']}>{pageList[page]}</h3>
 				<button
 					className={style['header-button']}
 					onClick={switchPageRight}
