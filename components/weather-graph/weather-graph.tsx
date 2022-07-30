@@ -43,6 +43,8 @@ const WeatherGraph = ({ daily }: { daily: Daily[] }) => {
 					className={style['header-button']}
 					onClick={switchPageLeft}
 					ref={hoverRefLeft}
+					title="Previous page"
+					aria-label="Move to previous page"
 				>
 					{isHoveredLeft ? (
 						<IoIosArrowDropleftCircle className={style['header-icon']} />
@@ -60,6 +62,8 @@ const WeatherGraph = ({ daily }: { daily: Daily[] }) => {
 					className={style['header-button']}
 					onClick={switchPageRight}
 					ref={hoverRefRight}
+					title="Next page"
+					aria-label="Move to next page"
 				>
 					{isHoveredRight ? (
 						<IoIosArrowDroprightCircle className={style['header-icon']} />
