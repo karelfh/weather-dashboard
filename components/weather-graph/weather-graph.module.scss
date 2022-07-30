@@ -1,0 +1,46 @@
+ @import '../../styles/variables.scss';
+
+.graph-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 100%;
+  padding: 1em;
+  border-radius: $border-radius;
+  background-color: $color-white-transparent;
+
+  @include breakpoint('medium') {
+    width: 50%;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: $color-black;
+  }
+
+  .header-button {
+    display: inline-block;
+    background: none;
+    border: none;
+
+    .header-icon {
+      cursor: pointer;
+      font-size: 1.5em;
+    }
+  }
+}
+
+.soon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.25em;
+}

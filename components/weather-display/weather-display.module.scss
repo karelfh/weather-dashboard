@@ -23,20 +23,6 @@
   }
 }
 
-.temp-graph {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-height: 100%;
-  padding: 1em;
-  border-radius: $border-radius;
-  background-color: $color-white-transparent;
-
-  @include breakpoint('medium') {
-    width: 50%;
-  }
-}
-
 .location-time {
   display: flex;
   flex-direction: row;
@@ -54,11 +40,26 @@
 
 .time {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   margin: 0 auto;
   width: 100%;
 }
 
+.refetch {
+  background: none;
+  border: none;
+}
+
+.icon-refetch {
+  font-size: 1.3em;
+  margin-left: 0.25em;
+
+  &:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
 .temp-container {
   display: flex;
   flex-direction: column;

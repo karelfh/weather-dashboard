@@ -5,7 +5,7 @@ import { BsDropletHalf } from 'react-icons/bs';
 
 import type { Current, Daily, Location } from '../../types/typeWeatherApi';
 
-import GraphTemp from '../graph-temp/graph-temp';
+import WeatherGraph from '../weather-graph/weather-graph';
 import TimeDisplay from '../utils/time-display/time-display';
 
 import style from './weather-display.module.scss';
@@ -54,7 +54,7 @@ const WeatherDisplay = ({
 						</div>
 						<div className={style['data-container']}>
 							<MdOutlineVisibility className={style['icon-visibility']} />
-							<p>{current.visibility / 1000} km</p>
+							<p>{(Math.round(current.visibility) / 1000).toFixed(2)} km</p>
 						</div>
 						<div className={style['data-container']}>
 							<BsDropletHalf className={style['icon-dew-point']} />
@@ -62,9 +62,7 @@ const WeatherDisplay = ({
 						</div>
 					</div>
 				</div>
-				<div className={style['temp-graph']}>
-					<GraphTemp temp={daily[0].temp} />
-				</div>
+				<WeatherGraph daily={daily} />
 			</article>
 		</IconContext.Provider>
 	);

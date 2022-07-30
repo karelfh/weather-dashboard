@@ -1,5 +1,18 @@
 @import '../../styles/variables.scss';
 
+.graph-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100%;
+  margin-top: auto;
+
+  canvas {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+}
+
 .legend {
   display: flex;
   justify-content: space-between;
