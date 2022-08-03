@@ -85,6 +85,10 @@
   font-size: 1.25rem;
   margin: 0;
   color: $color-blue;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .weather-data {

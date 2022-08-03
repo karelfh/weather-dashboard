@@ -45,7 +45,9 @@ const WeatherDisplay = ({
 								Feels like {Math.round(current.feels_like)} &deg;C
 							</p>
 						) : null}
-						<p className={style['weather-desc']}>Mostly clear</p>
+						<p className={style['weather-desc']}>
+							{current.weather[0].description}
+						</p>
 					</div>
 					<div className={style['weather-data']}>
 						<div className={style['data-container']}>
