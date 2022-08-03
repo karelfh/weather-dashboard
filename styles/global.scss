@@ -22,9 +22,12 @@ html {
 
 body {
   position: relative;
-  height: 100vh;
   margin: 0;
   font-family: $font;
+
+  @include breakpoint('medium') {
+    height: 100vh;
+  }
 }
 
 #__next {

@@ -2,6 +2,7 @@
 
 .main {
   margin: 0 1em;
+  height: calc(100% - ($header-height + $footer-height));
 
   @include breakpoint('medium') {
     display: flex;
