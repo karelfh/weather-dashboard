@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 
-import { Data } from '../../../types/typeWeatherApi';
+import { Data, Location } from '../../../types/typeWeatherApi';
 
 import Header from '../header/header';
 import Footer from '../footer/footer';
@@ -9,10 +9,10 @@ import Footer from '../footer/footer';
 import style from './layout.module.scss';
 
 const Layout = ({ children }: { children: React.ReactElement }) => {
-	const [locationData, setLocationData] = useState<Data>();
+	const [locationData, setLocationData] = useState<Location>();
 	const [weatherData, setWeatherData] = useState<Data>();
 
-	const handleWeatherData = (weatherData: Data, locationData: Data) => {
+	const handleWeatherData = (weatherData: Data, locationData: Location) => {
 		setWeatherData(weatherData);
 		setLocationData(locationData);
 	};

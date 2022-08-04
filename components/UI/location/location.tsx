@@ -5,7 +5,7 @@ import type { Data, Location } from '../../../types/typeWeatherApi';
 
 import style from './location.module.scss';
 
-const Location = ({
+const CurrentLocationButton = ({
 	handleData,
 }: {
 	handleData: (weatherData: Data, locationData: Location) => void;
@@ -58,4 +58,4 @@ const Location = ({
 	);
 };
 
-export default Location;
+export default CurrentLocationButton;
