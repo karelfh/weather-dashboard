@@ -1,6 +1,14 @@
 import axios from 'axios';
+import rateLimit from '../../utils/rate-limit';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+const limiter = rateLimit({
+	// 60 seconds
+	interval: 60 * 1000,
+	// Max 10 users per minute
+	uniqueTokenPerInterval: 10,
+});
 
 export const getCurrentLocation = async (query: {
 	[key: string]: string | string[] | undefined;
@@ -18,9 +26,15 @@ const currentLocationHandler = async (
 	req: NextApiRequest,
 	res: NextApiResponse
 ) => {
-	const data = await getCurrentLocation(req.query);
+	try {
+		// 10 request per minute
+		await limiter.check(res, 10, 'CACHE_TOKEN');
+		const data = await getCurrentLocation(req.query);
 
-	res.status(200).json(data);
+		res.status(200).json(data);
+	} catch {
+		res.status(429).json({ error: 'Rate limit exceeded' });
+	}
 };
 
 export default currentLocationHandler;
