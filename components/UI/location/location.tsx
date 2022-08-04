@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { FaSearchLocation } from 'react-icons/fa';
 
-import { Data } from '../../../types/typeWeatherApi';
+import type { Data, Location } from '../../../types/typeWeatherApi';
 
 import style from './location.module.scss';
 
 const Location = ({
 	handleData,
 }: {
-	handleData: (weatherData: Data, locationData: Data) => void;
+	handleData: (weatherData: Data, locationData: Location) => void;
 }) => {
 	const handleClick = () => {
 		navigator.geolocation.getCurrentPosition(
@@ -36,7 +36,7 @@ const Location = ({
 		);
 	};
 
-	const getCurrentWeather = async (locationData: any) => {
+	const getCurrentWeather = async (locationData: Location) => {
 		await axios
 			.get(
 				`/api/currentWeather?lon=${locationData.lon}&lat=${

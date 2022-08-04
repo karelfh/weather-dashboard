@@ -8,7 +8,7 @@ import Footer from '../footer/footer';
 
 import style from './layout.module.scss';
 
-const Layout = ({ children }: { children: any }) => {
+const Layout = ({ children }: { children: React.ReactElement }) => {
 	const [locationData, setLocationData] = useState<Data>();
 	const [weatherData, setWeatherData] = useState<Data>();
 
