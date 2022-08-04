@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .main {
-  margin: 0 1em;
+  position: relavite;
   height: calc(100% - ($header-height + $footer-height));
 
   @include breakpoint('medium') {

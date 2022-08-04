@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.map {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  height: calc(91.25% - $footer-height);
+  width: 100%;
+  z-index: 0;
+
+  @include breakpoint('small') {
+    height: calc(90.35% - $footer-height);
+    width: 100vw;
+  }
+}

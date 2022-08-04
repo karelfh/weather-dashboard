@@ -25,6 +25,11 @@ body {
   margin: 0;
   font-family: $font;
 
+  @include breakpoint('small') {
+    padding: 0;
+    margin: 0;
+  }
+
   @include breakpoint('medium') {
     height: 100vh;
   }
@@ -45,4 +50,17 @@ h2 {
 
 h3 {
   font-size: 1.3rem;
+}
+
+/* Leaflet Map */
+.leaflet-container {
+  height: 100%;
+}
+
+html,
+body {
+  @include breakpoint('small') {
+    height: 100%;
+    width: 100vw;
+  }
 }
