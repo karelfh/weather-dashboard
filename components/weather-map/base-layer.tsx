@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { TileLayer, useMap } from 'react-leaflet';
 
-const BaseLayer = ({ location }: any) => {
+import type { Location } from '../../types/typeWeatherApi';
+
+const BaseLayer = ({ location }: { location?: Location }) => {
 	const map = useMap();
 
 	useEffect(() => {

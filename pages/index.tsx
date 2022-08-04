@@ -16,8 +16,8 @@ import style from './index.module.scss';
 interface HomeProps {
 	initialWeather: Data;
 	initialLocation: Location;
-	weatherData: any;
-	locationData: any;
+	weatherData: Data;
+	locationData: Location;
 }
 
 const Home: NextPage<HomeProps> = ({

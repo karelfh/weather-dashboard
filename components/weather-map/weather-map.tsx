@@ -1,10 +1,11 @@
 import { MapContainer, TileLayer, LayersControl } from 'react-leaflet';
 
 import BaseLayer from './base-layer';
+import type { Location } from '../../types/typeWeatherApi';
 
 import style from './weather-map.module.scss';
 
-const WeatherMap = ({ location }: any) => {
+const WeatherMap = ({ location }: { location?: Location }) => {
 	const coords =
 		location === undefined ? [51.505, -0.09] : [location.lat, location.lon];
 
