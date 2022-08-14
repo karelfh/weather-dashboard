@@ -20,9 +20,9 @@ const Header = ({
 					<Navbar>
 						<NavItem href="/" title="Dashboard" />
 						<NavItem href="/map" title="Map" />
-						<NavItem href="/location" title="Location" />
+						{/* <NavItem href="/location" title="Location" />
 						<NavItem href="/calendar" title="Calendar" />
-						<NavItem href="/settings" title="Settings" />
+						<NavItem href="/settings" title="Settings" /> */}
 					</Navbar>
 				</div>
 			</div>
